@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>florr.idle — a florr.io adaptation</title>
+<link rel="stylesheet" href="florr-idle.css">
+</head>
+<body>
+<div id="game">
+
+  <!-- ===== Top HUD ===== -->
+  <header id="hud">
+    <div class="hud-left">
+      <div id="level-badge" title="Your flower level">Lvl <span id="level-num">1</span></div>
+      <div id="xp-bar" class="bar" title="XP to next level">
+        <div id="xp-fill" class="bar-fill"></div>
+        <span id="xp-text" class="bar-text">0 / 25 XP</span>
+      </div>
+      <div id="points-badge" title="Points — earned by healing petals, spent in the Shop">
+        <span class="pts-icon">✿</span> <span id="points-num">0</span>
+      </div>
+      <div id="tp-badge" title="Talent Points — earned by leveling up">
+        <span class="tp-icon">★</span> <span id="tp-num">0</span> TP
+      </div>
+    </div>
+    <div class="hud-center">
+      <div id="zone-name">Garden</div>
+      <button id="zone-btn" class="btn small" title="Travel to another zone">Map</button>
+    </div>
+    <div class="hud-right">
+      <div id="boss-progress" title="Kills until the next boss appears">Boss in <span id="boss-count">15</span></div>
+      <button id="stats-btn" class="btn small">Stats</button>
+      <button id="settings-btn" class="btn small">⚙</button>
+    </div>
+  </header>
+
+  <!-- ===== Arena ===== -->
+  <div id="arena-wrap">
+    <div id="boss-bar-wrap" class="hidden">
+      <div id="boss-name">Queen Ant</div>
+      <div id="boss-bar" class="bar boss">
+        <div id="boss-fill" class="bar-fill"></div>
+        <span id="boss-hp-text" class="bar-text"></span>
+      </div>
+    </div>
+
+    <canvas id="arena" width="960" height="380"></canvas>
+
+    <div id="arena-footer">
+      <div class="unit-panel" id="flower-panel">
+        <div class="unit-name">Your Flower</div>
+        <div class="bar mini" title="Points per second from healing petals">
+          <div id="pps-fill" class="bar-fill pps"></div>
+          <span id="pps-text" class="bar-text">0 pts/s</span>
+        </div>
+        <div id="dps-display" title="Total damage per second dealt by your petals">
+          <span class="dps-label">DPS</span> <span id="dps-num">0</span>
+        </div>
+        <div id="dps-detail" title="Rotation speed / multi-hit info">2.5 rad/s</div>
+      </div>
+      <div class="unit-panel" id="mob-panel">
+        <div class="unit-name"><span id="mob-rarity" class="rarity-chip common">Common</span> <span id="mob-name">Baby Ant</span></div>
+        <div class="bar mini" id="mob-hp-bar">
+          <div id="mob-hp-fill" class="bar-fill hp"></div>
+          <span id="mob-hp-text" class="bar-text">10 / 10</span>
+        </div>
+        <div id="mob-tags"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Bottom bar ===== -->
+  <footer id="bottom-bar">
+    <div id="menu-buttons">
+      <button class="btn menu-btn" data-panel="inventory">🎒 Inventory</button>
+      <button class="btn menu-btn" data-panel="crafting">⚗️ Crafting</button>
+      <button class="btn menu-btn" data-panel="absorb">💠 Absorb</button>
+      <button class="btn menu-btn" data-panel="talents">🌿 Talents</button>
+      <button class="btn menu-btn" data-panel="gallery">📖 Gallery</button>
+      <button class="btn menu-btn" data-panel="achievements">🏆 Feats</button>
+      <button class="btn menu-btn" data-panel="shop">🗺️ Shop</button>
+    </div>
+    <div id="slot-rows">
+      <div id="active-slots" class="slot-row" title="Active petals — these orbit your flower and fight"></div>
+      <div id="reserve-slots" class="slot-row reserve" title="Reserve petals — click two slots to swap"></div>
+    </div>
+  </footer>
+
+  <!-- ===== Side panel ===== -->
+  <aside id="side-panel" class="hidden">
+    <div id="panel-header">
+      <h2 id="panel-title">Inventory</h2>
+      <button id="panel-close" class="btn small">✕</button>
+    </div>
+    <div id="panel-body"></div>
+  </aside>
+
+  <!-- ===== Toasts ===== -->
+  <div id="toasts"></div>
+
+  <!-- ===== Tooltip ===== -->
+  <div id="tooltip" class="hidden"></div>
+</div>
+
+<script src="florr-idle.js"></script>
+</body>
+</html>
