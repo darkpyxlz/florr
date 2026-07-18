@@ -1,2 +1,3 @@
-# rhythmgame
-i try to build an incremental rhythm game
+# florrcremental
+idk it's just a vibe coded incremental florr game lmao
+
